@@ -1,6 +1,5 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import app from '../src/server';
-import pool from '../src/config/database';
 
 // Initialize database schema on first request
 let dbInitialized = false;
@@ -8,6 +7,8 @@ let dbInitialized = false;
 const initDB = async () => {
   if (dbInitialized) return;
   try {
+    const pool = await import('../src/config/database').then(m => m.default);
+    
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -34,13 +35,17 @@ const initDB = async () => {
     `);
     
     dbInitialized = true;
-    console.log('✅ Database schema initialized');
   } catch (error) {
-    console.error('Database initialization error:', error);
+    console.error('Database error:', error);
   }
 };
 
 export default async (req: VercelRequest, res: VercelResponse) => {
-  await initDB();
-  return app(req, res);
+  try {
+    await initDB();
+    return app(req as any, res as any);
+  } catch (error) {
+    console.error('Error:', error);
+    return res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 };
