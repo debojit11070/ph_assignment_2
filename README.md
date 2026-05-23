@@ -100,8 +100,8 @@
 ```json
 {
   "name": "Rajib Ahmed",
-  "email": "rajib.ahmed@devpulse.com",
-  "password": "securePassword123",
+  "email": "rajib@ph.com",
+  "password": "Password123",
   "role": "contributor"
 }
 ```
@@ -115,7 +115,7 @@
   "data": {
     "id": 1,
     "name": "Rajib Ahmed",
-    "email": "rajib.ahmed@devpulse.com",
+    "email": "rajib@ph.com",
     "role": "contributor",
     "created_at": "2026-01-20T09:00:00Z",
     "updated_at": "2026-01-20T09:00:00Z"
@@ -139,7 +139,7 @@
 
 ```json
 {
-  "email": "rajib.ahmed@devpulse.com",
+  "email": "rajib@ph.com",
   "password": "securePassword123"
 }
 ```
@@ -155,7 +155,7 @@
     "user": {
       "id": 1,
       "name": "Rajib Ahmed",
-      "email": "rajib.ahmed@devpulse.com",
+      "email": "rajib@ph.com",
       "role": "contributor",
       "created_at": "2026-01-20T09:00:00Z",
       "updated_at": "2026-01-20T09:00:00Z"
@@ -254,7 +254,7 @@ Authorization: <JWT_TOKEN>
       "status": "open",
       "reporter": {
         "id": 1,
-        "name": "John Doe",
+        "name": "John Snow",
         "role": "contributor"
       },
       "created_at": "2026-01-20T10:30:00Z",
@@ -440,18 +440,11 @@ Authorization: <JWT_TOKEN>
 
 3. **Setup environment variables**
    - Create a `.env` file in the root directory
-   - Copy the provided connection parameters:
-   ```env
-   POSTGRES_HOST=ep-frosty-paper-aq43v19m.c-8.us-east-1.aws.neon.tech
-   POSTGRES_PORT=5432
-   POSTGRES_USER=neondb_owner
-   POSTGRES_PASSWORD=npg_WHbvVd6PQuI2
-   POSTGRES_DATABASE=neondb
-   POSTGRES_POOLER_HOST=ep-frosty-paper-aq43v19m-pooler.c-8.us-east-1.aws.neon.tech
-   JWT_SECRET=your_super_secret_jwt_key
-   NODE_ENV=development
-   PORT=5000
+   - Copy `.env.example` and fill in your actual values:
+   ```bash
+   cp .env.example .env
    ```
+   - Update the `.env` file with your Neon DB credentials and JWT secret
 
 4. **Build the project**
    ```bash
