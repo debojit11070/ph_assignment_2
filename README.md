@@ -4,7 +4,7 @@
 > 
 > *A collaborative platform for software teams to report bugs, suggest features, and coordinate resolutions.*
 
-**Live API:** [will be deployed to Vercel](#)
+**Live API:** [https://b7a2debojit.vercel.app](https://b7a2debojit.vercel.app)
 
 ---
 
