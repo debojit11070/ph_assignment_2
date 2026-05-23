@@ -1,6 +1,11 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
   "builds": [
+    {
+      "src": "dist/server.js",
+      "use": "@vercel/node"
+    },
     {
       "src": "api/index.ts",
       "use": "@vercel/node"
