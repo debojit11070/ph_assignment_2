@@ -106,17 +106,21 @@ app.use((_req: Request, res: Response) => {
 // Start server
 const startServer = async () => {
   try {
+    // Test database connection
     const dbConnected = await checkDatabase();
     if (!dbConnected) {
-      console.error('Cannot start server without database connection');
-      process.exit(1);
+      console.warn('⚠️ Database connection failed');
     }
 
-    await initializeDatabase();
+    // Only initialize schema in development
+    if (process.env.NODE_ENV !== 'production') {
+      await initializeDatabase();
+    }
 
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is running on http://localhost:${PORT}`);
-      console.log(`📚 API Documentation:
+    if (process.env.NODE_ENV !== 'production') {
+      app.listen(PORT, () => {
+        console.log(`🚀 Server is running on http://localhost:${PORT}`);
+        console.log(`📚 API Documentation:
         - POST   /api/auth/signup
         - POST   /api/auth/login
         - POST   /api/issues
@@ -125,10 +129,12 @@ const startServer = async () => {
         - PATCH  /api/issues/:id
         - DELETE /api/issues/:id
       `);
-    });
+      });
+    } else {
+      console.log('🚀 API is ready for Vercel deployment');
+    }
   } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
+    console.error('Error during startup:', error);
   }
 };
 
