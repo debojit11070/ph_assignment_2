@@ -1,12 +1,21 @@
-# B7A2
-
-# 🚼 DevPulse – Assignment Requirements Specification
+# 🚼 DevPulse – Issue Tracker API
 
 > Internal Tech Issue & Feature Tracker
 > 
-> 
 > *A collaborative platform for software teams to report bugs, suggest features, and coordinate resolutions.*
-> 
+
+**Live API:** [will be deployed to Vercel](#)
+
+---
+
+## ✨ Features
+
+- 🔐 JWT-based authentication with secure password hashing
+- 👥 Role-based access control (Contributor & Maintainer)
+- 🐛 Bug tracking and feature request management
+- 🔄 Issue status workflow (open → in_progress → resolved)
+- 🛠️ RESTful API with comprehensive error handling
+- 📊 Query filtering and sorting capabilities
 
 ---
 
@@ -90,8 +99,8 @@
 
 ```json
 {
-  "name": "John Doe",
-  "email": "john.doe@devpulse.com",
+  "name": "Rajib Ahmed",
+  "email": "rajib.ahmed@devpulse.com",
   "password": "securePassword123",
   "role": "contributor"
 }
@@ -105,8 +114,8 @@
   "message": "User registered successfully",
   "data": {
     "id": 1,
-    "name": "John Doe",
-    "email": "john.doe@devpulse.com",
+    "name": "Rajib Ahmed",
+    "email": "rajib.ahmed@devpulse.com",
     "role": "contributor",
     "created_at": "2026-01-20T09:00:00Z",
     "updated_at": "2026-01-20T09:00:00Z"
@@ -130,7 +139,7 @@
 
 ```json
 {
-  "email": "john.doe@devpulse.com",
+  "email": "rajib.ahmed@devpulse.com",
   "password": "securePassword123"
 }
 ```
@@ -145,8 +154,8 @@
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "user": {
       "id": 1,
-      "name": "John Doe",
-      "email": "john.doe@devpulse.com",
+      "name": "Rajib Ahmed",
+      "email": "rajib.ahmed@devpulse.com",
       "role": "contributor",
       "created_at": "2026-01-20T09:00:00Z",
       "updated_at": "2026-01-20T09:00:00Z"
@@ -284,7 +293,7 @@ Authorization: <JWT_TOKEN>
     "status": "open",
     "reporter": {
       "id": 1,
-      "name": "John Doe",
+      "name": "Rajib Ahmed",
       "role": "contributor"
     },
     "created_at": "2026-01-20T10:30:00Z",
@@ -409,78 +418,122 @@ Authorization: <JWT_TOKEN>
 
 ---
 
-## 🎤 Technical Interview Video (Answer Any 2)
+## 🚀 Setup Instructions
 
-**Questions:**
+### Prerequisites
+- Node.js 24.x or higher
+- PostgreSQL (Neon DB)
+- npm or yarn
 
-1. How does the Node.js event loop execute asynchronous tasks without blocking the single main thread?
-2. What is the purpose of `next()` in Express middleware, and what happens if it is omitted in a route handler?
-3. How do you create a centralized error-handling middleware in Express to safely catch both sync and async errors?
-4. What are the main differences between SQL (PostgreSQL) and NoSQL (MongoDB) regarding schema design and scaling?
-5. What is database connection pooling in PostgreSQL, and why is it preferred over opening a new client connection for every request?
+### Installation
 
-**🎤 Recording Instructions:**
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/devpulse.git
+   cd devpulse
+   ```
 
-- Use your smartphone selfie camera or laptop webcam in **landscape (horizontal) mode**.
-- Record in a **well-lit, quiet room** with your **face fully visible** throughout the video.
-- Select and answer **any 2 questions** from the list above, spoken in **English**.
-- Keep each answer between **3–5 minutes**. Speak naturally from your understanding — avoid reading verbatim from notes or scripts.
-- Upload your video to **Google Drive**, **YouTube (Unlisted)**, or any cloud platform, and share a **publicly accessible link**.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
----
+3. **Setup environment variables**
+   - Create a `.env` file in the root directory
+   - Copy the provided connection parameters:
+   ```env
+   POSTGRES_HOST=ep-frosty-paper-aq43v19m.c-8.us-east-1.aws.neon.tech
+   POSTGRES_PORT=5432
+   POSTGRES_USER=neondb_owner
+   POSTGRES_PASSWORD=npg_WHbvVd6PQuI2
+   POSTGRES_DATABASE=neondb
+   POSTGRES_POOLER_HOST=ep-frosty-paper-aq43v19m-pooler.c-8.us-east-1.aws.neon.tech
+   JWT_SECRET=your_super_secret_jwt_key
+   NODE_ENV=development
+   PORT=5000
+   ```
 
-## 📬 Submission Guidelines
+4. **Build the project**
+   ```bash
+   npm run build
+   ```
 
-### 1️⃣ Codebase Requirements
-
-**Architecture & Code Quality:**
-
-- Use **modular architecture**: separate `modules/`, `utils/`, `config/`, and `middleware/` directories
-- Create **reusable utility functions** for common tasks (response formatting, error handling, SQL queries)
-- Follow the **DRY principle**: avoid code duplication; extract shared logic into helpers
-- Keep code **clean and readable**: meaningful variable names, consistent formatting, inline comments for complex logic
-- Use **TypeScript strictly**: no `any` types, proper interfaces for request/response bodies
-
-**Critical Requirement:**
-⚠️ **You must follow the `API Endpoints Specification` exactly**—including endpoint paths, HTTP methods, request body structure, and response format. Deviations will result in **0 marks**.
-
----
-
-### 2️⃣ Deployment Requirements
-
-- Deploy backend to **Vercel**, **Render**, or **Railway**
-- Use **NeonDB**, **Supabase**, or **ElephantSQL** for PostgreSQL
-- Ensure CORS and environment variables are properly configured
-
-[**README.md](http://readme.md/) must include:**
-
-- Project name, live URL, features, tech stack
-- Setup steps, API endpoint list, database schema summary
-- Keep it clear and professional
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   The API will be available at `http://localhost:5000`
 
 ---
 
----
-
-### 3️⃣ Final Submission Checklist
-
-Submit the following in your assignment form:
+## 📦 Project Structure
 
 ```
-✅ GitHub Repo (Public):      <https://github.com/yourusername/devpulse>
-✅ Live Deployment (Public):  <https://devpulse-api.vercel.app>
-✅ Interview Video (Public):  <https://drive.google.com/>... or <https://youtu.be/>...
+src/
+├── config/
+│   └── database.ts          # PostgreSQL connection pool
+├── middleware/
+│   └── auth.ts              # JWT authentication & authorization
+├── modules/
+│   ├── auth/
+│   │   └── controller.ts    # Signup & Login logic
+│   └── issues/
+│       └── controller.ts    # CRUD operations for issues
+├── routes/
+│   ├── auth.ts              # Auth endpoints
+│   └── issues.ts            # Issues endpoints
+├── utils/
+│   └── response.ts          # Standardized response formatting
+└── server.ts                # Express app initialization
 ```
-
-> 💡 **Pro Tips:**
-> 
-> - Ensure your GitHub repo has **at least 10 meaningful commits** showing progressive development
-> - Avoid single-commit submissions
-> - Double-check all links are publicly accessible before submitting
 
 ---
 
-## 🎓 Assignment Deadlines
+## 🔌 Database Schema
+
+### Table: `users`
+```sql
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role VARCHAR(50) DEFAULT 'contributor',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### Table: `issues`
+```sql
+CREATE TABLE issues (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(150) NOT NULL,
+  description TEXT NOT NULL,
+  type VARCHAR(50) NOT NULL,
+  status VARCHAR(50) DEFAULT 'open',
+  reporter_id INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 📬 Submission Checklist
+
+- ✅ GitHub Repo (Public)
+- ✅ Live Deployment (Vercel/Render/Railway)
+- ✅ All API endpoints functional
+- ✅ Database schema implemented
+- ✅ JWT authentication & authorization
+- ✅ Role-based permissions
+- ✅ Error handling with proper status codes
+- ✅ Meaningful commit history (10+ commits)
+
+---
+
+## 🎓 Assignment Deadline
 
 | Marks | Deadline |
 | --- | --- |
@@ -490,12 +543,9 @@ Submit the following in your assignment form:
 
 ---
 
-## ⚠️ Academic Integrity Policy
+## ⚠️ Academic Integrity
 
-- **Plagiarism will not be tolerated.** All submissions must be your original work.
-- Any instance of plagiarism will result in **0 Marks** and may trigger disciplinary action.
-
-> 🔍 Submissions may be reviewed via code similarity tools and oral defense if required.
+All code in this repository is original work. Plagiarism will not be tolerated and will result in disciplinary action.
 > 
 
 ---
